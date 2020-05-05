@@ -5,31 +5,44 @@ function initializeView(grid) {
   canvas.width = grid.width * SIZE;
   canvas.height = grid.height * SIZE;
   let context = canvas.getContext("2d");
+  draw(grid, context);
+}
+
+function draw(grid, context) {
+  context.clearRect(0, 0, grid.width * SIZE, grid.height * SIZE);
+  drawGrid(grid, context);
   drawBloc(grid, context);
+  setTimeout(() => draw(grid, context), 60);
+}
+
+function drawCell(context, x, y, color) {
+  context.fillStyle = color;
+  context.fillRect(x * SIZE, y * SIZE, SIZE, SIZE);
+  context.strokeStyle = "red";
+  context.strokeRect(x * SIZE, y * SIZE, SIZE, SIZE);
 }
 
 function drawBloc(grid, context) {
   // Notre fonction qui nous permets de creer des blocs,
-  context.clearRect(0, 0, grid.width * SIZE, grid.height * SIZE);
   let cells = grid.bloc.cells[grid.orientation];
   for (let i = 0; i < cells.length; i++) {
+    // On parcourt les lignes de chaque objet
     for (let j = 0; j < cells[i].length; j++) {
+      // On parcourt les colonnes de chaque lignes
       if (cells[i][j]) {
-        context.fillStyle = grid.bloc.color;
-        context.fillRect((grid.x + j) * SIZE, (grid.y + i) * SIZE, SIZE, SIZE);
-        context.strokeStyle = "red";
-        context.strokeRect(
-          (grid.x + j) * SIZE,
-          (grid.y + i) * SIZE,
-          SIZE,
-          SIZE
-        );
+        drawCell(context, grid.x + j, grid.y + i, grid.bloc.color);
       }
     }
   }
-  window.requestAnimationFrame(() => drawBloc(grid, context));
 }
-// context.strokeStyle = "red";
-// context.strokeRect(10, 20, 30, 40);
-// context.fillStyle = "black";
-// context.fillRect(10, 20, 30, 40);
+
+function drawGrid(grid, context) {
+  for (let i = 0; i < grid.cells.length; i++) {
+    for (let j = 0; j < grid.cells[i].length; j++) {
+      let cell = grid.cells[i][j];
+      if (cell > 0) {
+        drawCell(context, j, i, BLOCS[cell].color);
+      }
+    }
+  }
+}

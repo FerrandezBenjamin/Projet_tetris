@@ -21,7 +21,11 @@ function initializeGrid(grid) {
 }
 
 function chooseBloc(grid) {
+  // Choisi un bloc de manière aléatoire
   grid.bloc = BLOCS[Math.floor(Math.random() * Object.keys(BLOCS).length) + 1];
+  // on veut recupérer l'index du bloc donc BLOCS []
+  // la fonction Mathj.random retourne un nombre entre 0 et 1
+  // Math.random retourne un nombre entre 0 et 1 alors qu'on veut un bloc dont l'index est compris entre 1 et 4 donc +1
   grid.orientation = Math.floor(Math.random() * grid.bloc.cells.length);
   grid.x = grid.width / 2 - 1;
   grid.y = 0;

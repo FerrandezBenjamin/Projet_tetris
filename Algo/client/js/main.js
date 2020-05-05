@@ -27,7 +27,7 @@ const BLOCS = {
 
   2: {
     // BLOC T
-    id: 12,
+    id: 2,
     cells: [
       [
         [true, true, true],
