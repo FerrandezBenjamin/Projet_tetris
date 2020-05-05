@@ -1,6 +1,7 @@
 const BLOCS = {
   1: {
     // BLOC L
+    id: 1,
     cells: [
       [
         [true, false, false],
@@ -26,6 +27,7 @@ const BLOCS = {
 
   2: {
     // BLOC T
+    id: 12,
     cells: [
       [
         [true, true, true],
@@ -51,12 +53,14 @@ const BLOCS = {
 
   3: {
     //BLOC I
+    id: 3,
     cells: [[[true, true, true, true]], [[true], [true], [true], [true]]],
     color: "orange",
   },
 
   4: {
     //BLOC Z
+    id: 4,
     cells: [
       [
         [true, true, false],

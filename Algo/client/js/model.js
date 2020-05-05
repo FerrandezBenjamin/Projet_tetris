@@ -6,7 +6,18 @@ function initializeModel(grid) {
   grid.orientation = -1;
   grid.x = -1;
   grid.y = -1;
+  initializeGrid(grid);
   chooseBloc(grid);
+  window.setInterval(update, 100, grid);
+}
+function initializeGrid(grid) {
+  for (let i = 0; i < grid.height; i++) {
+    grid.cells[i] = [];
+    for (let j = 0; j < grid.width; j++) {
+      grid.cells[i][j] = 0;
+    }
+  }
+  console.log(grid.cells);
 }
 
 function chooseBloc(grid) {
@@ -14,4 +25,25 @@ function chooseBloc(grid) {
   grid.orientation = Math.floor(Math.random() * grid.bloc.cells.length);
   grid.x = grid.width / 2 - 1;
   grid.y = 0;
+}
+
+function update(grid) {
+  if (grid.y < grid.height - grid.bloc.cells[grid.orientation].length) {
+    grid.y++;
+  } else {
+    stockBloc(grid);
+    chooseBloc(grid);
+  }
+}
+
+function stockBloc(grid) {
+  let cells = grid.bloc.cells[grid.orientation];
+  for (let i = 0; i < cells.length; i++) {
+    for (let j = 0; j < cells[i].length; j++) {
+      if (cells[i][j]) {
+        grid.cells[grid.y + i][grid.x + j] = grid.bloc.id;
+      }
+    }
+  }
+  // console.log(grid.cells);
 }
