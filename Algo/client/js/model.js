@@ -65,7 +65,7 @@ function imTheBest(grid) {
   }
 }
 
-/* ---------------------------MARCHE PAS*--------------------------/
+/* ---------------------------MARCHE PAS----------------------------/
 // function inPause(grid) {
 //   // Mettre le jeu en pause
 //   if ((PLAY = true)) {
@@ -73,7 +73,7 @@ function imTheBest(grid) {
 //     window.clearInterval(grid.interval);
 //   }
 // }
-/* ---------------------------MARCHE PAS*--------------------------*/
+/* ---------------------------MARCHE PAS----------------------------*/
 
 function update(grid) {
   // Quand le bloc arrive en bas de la page, stock le bloc, et en créer un autre
