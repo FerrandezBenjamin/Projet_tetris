@@ -66,7 +66,16 @@ function update(grid) {
 }
 
 function blocCanGoThere(grid, x, y) {
-  return true;
+  let cells = grid.bloc.cells[grid.orientation];
+  let res = true;
+  for (let i = 0; i < cells.length; i++) {
+    for (let j = 0; j < cells[i].length; j++) {
+      if (grid.cells[y + i][x + j] > 0) {
+        res = false;
+      }
+    }
+  }
+  return res;
 }
 
 function stockBloc(grid) {
