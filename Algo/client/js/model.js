@@ -1,3 +1,5 @@
+var PLAY = true;
+
 function initializeModel(grid) {
   grid.cells = [];
   grid.width = 12;
@@ -8,8 +10,11 @@ function initializeModel(grid) {
   grid.y = -1;
   initializeGrid(grid);
   chooseBloc(grid);
-  window.setInterval(update, 250, grid);
+  grid.score = 0;
+  grid.level = 1;
+  grid.interval = window.setInterval(update, 500, grid);
 }
+
 function initializeGrid(grid) {
   for (let i = 0; i < grid.height; i++) {
     grid.cells[i] = [];
@@ -52,6 +57,24 @@ function incX(grid) {
   }
 }
 
+function imTheBest(grid) {
+  // Passez en mode Cheat POUR LE NIVEAU EN COURS
+  if ((PLAY = true)) {
+    console.log("AdminPlayer pour le niveau");
+    window.clearInterval(grid.interval);
+  }
+}
+
+/* ---------------------------MARCHE PAS*--------------------------/
+// function inPause(grid) {
+//   // Mettre le jeu en pause
+//   if ((PLAY = true)) {
+//     console.log("jesuisdansleifINPAUSE");
+//     window.clearInterval(grid.interval);
+//   }
+// }
+/* ---------------------------MARCHE PAS*--------------------------*/
+
 function update(grid) {
   // Quand le bloc arrive en bas de la page, stock le bloc, et en créer un autre
   if (
@@ -59,6 +82,9 @@ function update(grid) {
     blocCanGoThere(grid, grid.x, grid.y + 1)
   ) {
     grid.y++;
+  } else if (grid.y == 0) {
+    window.clearInterval(grid.interval);
+    alert("GAME OVER");
   } else {
     stockBloc(grid); // Stock dans la grille
     checkFullLine(grid);
@@ -104,6 +130,9 @@ function checkFullLine(grid) {
     }
     if (res) {
       deleteLine(grid, i);
+      score(grid);
+      console.log(grid.score);
+      console.log(grid.level);
     }
   }
 }
@@ -126,5 +155,14 @@ for (let i = y; i > 0; i--){
 **/
   for (let j = 0; j < grid.cells[y].length; j++) {
     grid.cells[0][j] = 0;
+  }
+}
+
+function score(grid) {
+  grid.score += 10;
+  if (grid.score % 100 == 20) {
+    grid.level++;
+    window.clearInterval(grid.interval);
+    grid.interval = window.setInterval(update, 500 / grid.level, grid);
   }
 }

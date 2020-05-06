@@ -74,6 +74,43 @@ const BLOCS = {
     ],
     color: "green",
   },
+
+  5: {
+    //BLOC CARREE
+    id: 5,
+    cells: [
+      [
+        [true, true],
+        [true, true],
+      ],
+    ],
+    color: "black",
+  },
+  6: {
+    // le L à l'envers
+    id: 6,
+    cells: [
+      [
+        [false, false, true],
+        [true, true, true],
+      ],
+      [
+        [true, true],
+        [false, true],
+        [false, true],
+      ],
+      [
+        [true, true, true],
+        [true, false, false],
+      ],
+      [
+        [true, false],
+        [true, false],
+        [true, true],
+      ],
+    ],
+    color: "blue",
+  },
 };
 
 let grid = {};
