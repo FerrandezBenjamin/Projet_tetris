@@ -70,8 +70,10 @@ function blocCanGoThere(grid, x, y) {
   let res = true;
   for (let i = 0; i < cells.length; i++) {
     for (let j = 0; j < cells[i].length; j++) {
-      if (grid.cells[y + i][x + j] > 0) {
-        res = false;
+      if (cells[i][j]) {
+        if (grid.cells[y + i][x + j] > 0) {
+          res = false;
+        }
       }
     }
   }
