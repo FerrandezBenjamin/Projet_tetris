@@ -152,7 +152,8 @@ for (let i = y; i > 0; i--){
     grid.cells[i][j] = grid.cells[i - 1][j];
   }
 }
-**/
+  */
+
   for (let j = 0; j < grid.cells[y].length; j++) {
     grid.cells[0][j] = 0;
   }

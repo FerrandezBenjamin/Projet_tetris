@@ -18,7 +18,7 @@ function draw(grid, context) {
 function drawCell(context, x, y, color) {
   context.fillStyle = color;
   context.fillRect(x * SIZE, y * SIZE, SIZE, SIZE);
-  context.strokeStyle = "red";
+  context.strokeStyle = "white";
   context.strokeRect(x * SIZE, y * SIZE, SIZE, SIZE);
 }
 
